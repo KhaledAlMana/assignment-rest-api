@@ -7,6 +7,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
@@ -26,4 +27,15 @@ public class PostsController {
 
     }
 
+    @GetMapping("/{postId}/comments")
+    public String getPostComments(@PathVariable String postId) {
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.setAccept(Arrays.asList(MediaType.APPLICATION_JSON));
+        HttpEntity<String> entity = new HttpEntity<String>(headers);
+        return restTemplate.exchange(
+                "https://gorest.co.in/public/v2/comments/?post_id=" + postId, HttpMethod.GET, entity, String.class)
+                .getBody();
+
+    }
 }
