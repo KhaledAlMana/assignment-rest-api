@@ -1,0 +1,12 @@
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: eeff2ec88cbd33108d71
+            client-secret: 621b3fce13aab158a9da038b70b9e18050669e7c
+            # redirect-uri: https://oauth.pstmn.io/v1/callback
+            scope:
+              - user:email
+              - read:user
