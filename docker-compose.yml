@@ -4,15 +4,15 @@ volumes:
   db-data: {}
 
 services:
-  assignment-db:
-    container_name: assignment-db
-    image: postgres:latest
+  assignment-api:
+    container_name: assignment-api
+    image: khaledalmana/assignment-api:latest
+    build:
+      context: ./
+      dockerfile: Dockerfile
+      args:
+        - COMPONENT=assignmentapi
     restart: always
-    volumes:
-      - db-data:/var/lib/postgresql/data
     ports:
-      - ${DATABASE_PORT}:5432
-    environment:
-      POSTGRES_PASSWORD: ${DATABASE_PASS}
-      POSTGRES_USER: ${DATABASE_USER}
-      POSTGRES_DB: ${DATABASE_NAME}
+      - "8080:8080" # try not to change this port
+
