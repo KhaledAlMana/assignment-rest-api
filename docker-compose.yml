@@ -10,8 +10,6 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-      args:
-        - COMPONENT=assignmentapi
     restart: always
     ports:
       - "8080:8080" # try not to change this port
